@@ -1,12 +1,16 @@
 from django.db import models
+
 from django.contrib.auth.models import User
 
 # Create your models here.
+
+
 class GoalStatus(models.Model):
     status_name = models.CharField(max_length=100, default="")
 
     def __str__(self):
         return self.status_name
+
 
 class ScrumyGoals(models.Model):
     goal_name = models.CharField(max_length=100)
@@ -18,7 +22,8 @@ class ScrumyGoals(models.Model):
     goal_status = models.ForeignKey(GoalStatus, on_delete=models.PROTECT, related_name='jeremiahchukwuscrumy')
 
     def __str__(self):
-        return u'%s %s %s %s %s %s %s' % (self.goal_name, self.goal_id, self.created_by, self.moved_by, self.owner, self.user, self.goal_status)
+        return self.goal_name
+
 
 class ScrumyHistory(models.Model):
     goal = models.ForeignKey(ScrumyGoals, on_delete=models.PROTECT, related_name='jeremiahchukwuscrumy')
@@ -26,7 +31,11 @@ class ScrumyHistory(models.Model):
     created_by = models.CharField(max_length=100)
     moved_from = models.CharField(max_length=100)
     moved_to = models.CharField(max_length=100)
-    time_of_action = models.CharField(max_length=100)
+    time_of_action = models.DateField()
 
     def __str__(self):
         return self.created_by
+
+
+
+
