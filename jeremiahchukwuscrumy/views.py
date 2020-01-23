@@ -9,3 +9,6 @@ def index(request):
     goal = ScrumyGoals.objects.filter(goal_name="Learn Django")
     return HttpResponse(goal)
 
+def move_goal(request, goal_id):
+    goal_name = ScrumyGoals.objects.get(goal_id = goal_id)
+    return HttpResponse(goal_name.goal_name)
