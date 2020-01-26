@@ -32,6 +32,14 @@ def add_goal(request):
 
 
 def home(request):
-    return HttpResponse(ScrumyGoals.objects.filter(goal_name="Keep Learning Django"))
+    # templates = loader.get_template('jeremiahchukwuscrumy/home.html')
+    scrumgoal = ScrumyGoals.objects.get(goal_name='Learn Django')
+    dictionary = {
+        'goal_id': scrumgoal.goal_id,
+        'goal_name': scrumgoal.goal_name,
+        'user': scrumgoal,
+    }
+    # context = goal_name, goal_id and user of an instance of the ScrumyGoal record “Learn Django”
+    return HttpResponse(render(request, 'jeremiahchukwuscrumy/home.html', dictionary))
 
 
