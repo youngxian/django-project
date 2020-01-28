@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
 from .models import ScrumyGoals, GoalStatus, ScrumyHistory
 from random import randint
 from django.contrib.auth.models import User
@@ -13,19 +13,23 @@ def index(request):
 
 
 def move_goal(request, goal_id):
-    goalname = ScrumyGoals.objects.get(goal_id = goal_id)
-    return HttpResponse(goalname.goal_name)
+    error = {'error':'A record with that goal id does not exist'}
+    try:
+        obj = ScrumyGoals.objects.get(goal_id=goal_id)
+    except Exception as e:
+        return render(request, 'jeremiahchukwuscrumy/exception.html', error)
+    else:
+        return HttpResponse(obj.goal_name)
+
 
 
 def add_goal(request):
     randnumber = randint(1000, 9999)
-    #goalname = ScrumyGoals.objects.get(goal_id=randnumber)
+    # goalname = ScrumyGoals.objects.get(goal_id=randnumber)
     weeklygoal = GoalStatus.objects.get(status_name="Weekly Goal")
     newuser = User.objects.create(username="Louis Oma")
     saveuser = newuser.save()
     user = User.objects.get(username="Louis Oma")
-    #print(goalname.goal_name)
-    #if(goalname.goal_name is None):
     scrumygoal = ScrumyGoals(goal_name="Keep Learning Django", goal_id=randnumber, created_by="Louis", moved_by="Louis", owner="Louis", goal_status=weeklygoal, user=user)
     save = scrumygoal.save()
     return HttpResponse(save)
