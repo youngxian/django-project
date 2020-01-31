@@ -29,8 +29,10 @@
         </h5>
         <p class="p-3 usertext text-white">Welcome, {{ user.username}} </p>
     </div>
-    <div class="d-flex flex-row align-items-right p-4">
+    <div class="d-flex flex-row justify-content-between p-4">
         <a href={% url 'jeremiahchukwuscrumy:add' %} class="button bg-warning mt-4"> + ADD GOAL</a>
+        <a href={% url 'jeremiahchukwuscrumy:logout' %} class="btn bg-secondary mt-4 text-white"> + LOGOUT</a>
+
     </div>
     <div class="container">
         <table class="table table-bordered">

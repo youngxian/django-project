@@ -11,7 +11,9 @@ urlpatterns = [
     path('movegoal/<int:goal_id>/', views.move_goal),
     path('addgoal/', views.add_goal, name='add'),
     path('home/', views.home),
+    path('logout/', views.logout_view, name='logout'),
     path('success/', TemplateView.as_view(
         template_name='jeremiahchukwuscrumy/success.html'), name='successpage'),
+        path('accounts/logout/', views.logout_view, name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
 ]

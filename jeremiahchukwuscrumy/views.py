@@ -4,6 +4,9 @@ from .models import ScrumyGoals, GoalStatus, ScrumyHistory, SignupForm, CreateGo
 import random
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+
 
 # Create your views here.
 
@@ -106,3 +109,8 @@ def sign_up(request):
         return render(request, 'registration/signup.html', error)
 
     return render(request, 'registration/signup.html', {'form': form})
+
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/jeremiahchukwuscrumy/accounts/login')
