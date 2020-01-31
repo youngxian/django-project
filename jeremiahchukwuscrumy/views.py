@@ -86,7 +86,7 @@ def add_goal(request):
 
 
 
-def sign_up(request):
+def index(request):
     form = SignupForm
     error ={
                 'Message' : 'Cannot create user',
@@ -109,9 +109,9 @@ def sign_up(request):
         # except Exception as e:
             # return render(request, 'registration/signup.html', error)
     else:
-        return render(request, 'registration/signup.html', error)
+        return render(request, 'registration/index.html', error)
 
-    return render(request, 'registration/signup.html', {'form': form})
+    return render(request, 'registration/index.html', {'form': form})
 
 
 def logout_view(request):
