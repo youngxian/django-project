@@ -17,40 +17,49 @@
             font-size: 14px;
             padding: 10px 30px;
         }
+        
+        .usertext {
+            font-size: 14px;
+            margin-right: 20px;
+        }
     </style>
-    <h5 class="bg-success p-3">
-        Dashboard
-    </h5>
+    <div class="d-flex justify-content-between bg-success p-0">
+        <h5 class="p-3">
+            Dashboard
+        </h5>
+        <p class="p-3 usertext text-white">Welcome, {{ user.username}} </p>
+    </div>
     <div class="d-flex flex-row align-items-right p-4">
-        <a class="button" href={% url 'jeremiahchukwuscrumy:add' %}>ADD A GOAL</<a>
+        <a href={% url 'jeremiahchukwuscrumy:add' %} class="button bg-warning mt-4"> + ADD GOAL</a>
     </div>
     <div class="container">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th scope="col">User</th>
-                        <th scope="col">Weekly Goals</th>
-                        <th scope="col">Daily Goals</th>
-                        <th scope="col">Verify Goals</th>
-                        <th scope="col">Done Goals</th>
-                    </tr>
-                </thead>
-                {% for user in users %}
+        <table class="table table-bordered">
+            <thead class="thead-light">
                 <tr>
-                    <th scope="row">{{user}}</th>
-                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
-                    </td>
-                    <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
-                    </td>
-                    <td>{% for goal in verify_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%}
-                        {%endfor%}
-                    </td>
-                    <td>{% for goal in done_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%}
-                        {%endfor%}
-                    </td>
+                    <th scope="col">User</th>
+                    <th scope="col">Weekly Goals</th>
+                    <th scope="col">Daily Goals</th>
+                    <th scope="col">Verify Goals</th>
+                    <th scope="col">Done Goals</th>
                 </tr>
+            </thead>
+            {% for user in users %}
+            <tr>
+                <th scope="row">{{user}}</th>
+                <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}}<br/>{{goal.goal_id}} {%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}}
+                    <br />{{goal.goal_id}} {%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == user.username%} {{goal}}
+                    <br />{{goal.goal_id}} {%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == user.username%} {{goal}}
+                    <br />{{goal.goal_id}} {%endif%} {%endfor%}
+                </td>
+            </tr>
             {% endfor %}
-            </table>
+        </table>
     </div>
 
 </body>

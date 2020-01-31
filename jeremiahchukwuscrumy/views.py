@@ -48,17 +48,17 @@ def move_goal(request, goal_id):
 def add_goal(request):
     form = CreateGoalForm
     users = User.objects.all()
+    allstatus = GoalStatus.objects.all()
     if request.method == 'POST':
-        random_list = list(random.sample(range(1000, 9999), 10))
-        random.shuffle(random_list)
-        random_no = random_list[0]
-        status = GoalStatus.objects.get(status_name="Daily Goal")
-
         form = form(request.POST)
         data = request.POST.dict()
-        print(data['user']+" the user")
-        user = User.objects.get(username=data['user'])
-        add_goal=ScrumyGoals(
+        if data['goal_status'] != '':
+            random_list = list(random.sample(range(1000, 9999), 10))
+            random.shuffle(random_list)
+            random_no = random_list[0]
+            status = GoalStatus.objects.get(status_name = data['goal_status'])
+            user = User.objects.get(username=data['user'])
+            add_goal=ScrumyGoals(
             goal_name = data['goal_name'],
             goal_id = random_no,
             goal_status = status,
@@ -67,13 +67,18 @@ def add_goal(request):
             owner = user.username,
             user = user
             )
-        add_goal.save()
-        return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
+            add_goal.save()
+            return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
+        else:
+            error = {
+                'message' : 'Incomplete details'
+            }
+            render(request, 'jeremiahchukwuscrumy/addgoal.html', error)
     context = {
         'create_goal': form,
-        'users': users
+        'users': users,
+        'goalstatus': allstatus,
     }
-
     return render(request, 'jeremiahchukwuscrumy/addgoal.html', context)
 
 
