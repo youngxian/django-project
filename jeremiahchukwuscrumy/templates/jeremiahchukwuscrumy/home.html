@@ -1,25 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
 </head>
-<body>
-    <table>
-         <tr>
-             <th>User</th>
-             <th>Weekly Goals</th>
-             <th>Dialy Goals</th>
-             <th>Verify Goals</th>
-             <th>Done Goals</th>
 
-  </tr>
-  <tr>
-    <td>{{ user.owner }}</td>
-    <td>{{ goal_id }}{{ goal_name }}</td>
-    <td></td>
-    <td></td>
-  </tr>
-    </table>
+<body>
+    <style>
+        .table-container {
+            margin-top: 50px;
+        }
+    </style>
+    <div class="container">
+        <div class="table-container">
+            <a class="btn bg-success text-white" href={% url 'jeremiahchukwuscrumy:add' %}>ADD A GOAL</<a>
+
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Weekly Goals</th>
+                        <th scope="col">Daily Goals</th>
+                        <th scope="col">Verify Goals</th>
+                        <th scope="col">Done Goals</th>
+                    </tr>
+                </thead>
+                {% for user in users %}
+                <tr>
+                    <th scope="row">{{user}}</th>
+                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
+                    </td>
+                    <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
+                    </td>
+
+                    {% endfor %}
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
 </body>
+
 </html>

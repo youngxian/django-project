@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <style>
+        .btn {
+            border: 0;
+            border-radius: 0;
+            font-size: 14px;
+            padding: 10px 35px;
+        }
+        
+        .form_group label {
+            font-size: 14px;
+        }
+        
+        .form_group input {
+            font-size: 14px;
+        }
+    </style>
+    <h5 class="bg-success p-3">
+        Django Project
+    </h5>
+    <div class="container-fluid">
+        <div class="d-flex flex-column align-items-center">
+            <h3 class="mt-4 pt-4">
+                Create a new account
+            </h3>
+            <h5>{{ error }}</h5>
+            <form action="" method="POST" class="w-50">
+                {% csrf_token %}
+                <div class="form_group">
+                    <label>
+                        Firstname
+                    </label>
+                    <input type="text" name="firstname" class="form-control">
+                </div>
+                <div class="form_group">
+                    <label>
+                        Lastname
+                    </label>
+                    <input type="text" name="lastname" class="form-control">
+                </div>
+                <div class="form_group">
+                    <label>
+                        Email
+                    </label>
+                    <input type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" class="form-control">
+                </div>
+                <div class="form_group">
+                    <label>
+                        Username
+                    </label>
+                    <input type="text" name="username" class="form-control">
+                </div>
+                <div class="form_group">
+                    <label>
+                        Password
+                    </label>
+                    <input type="password" name="password" class="form-control">
+                </div>
+                <button class="btn btn-primary mt-4 mb-4" type="submit">Create User</button>
+                <br>
+
+                <a href={% url 'jeremiahchukwuscrumy:login' %} class="mt-4"> Already have an account Login
+                             </a>
+
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
