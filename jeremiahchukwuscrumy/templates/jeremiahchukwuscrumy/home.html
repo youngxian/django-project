@@ -38,7 +38,7 @@
                 {% for user in users %}
                 <tr>
                     <th scope="row">{{user}}</th>
-                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}}{{ goal_id}} {%endif%} {%endfor%}
+                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
                     </td>
                     <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
                     </td>
@@ -48,10 +48,8 @@
                     <td>{% for goal in done_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%}
                         {%endfor%}
                     </td>
-
-                    
                 </tr>
-{% endfor %}
+            {% endfor %}
             </table>
     </div>
 
