@@ -97,9 +97,12 @@ def sign_up(request):
 
     #     form = SignupForm(request.POST)
         data = request.POST.dict()
-        user = User.objects.create_user(data['username'], data['email'], data['password'], data['first_name'])
+        user = User.objects.create_user(data['username'], data['email'], data['password'])
+        user.last_name = data['last_name']
+        user.first_name = data['first_name']
         user.save()
         new_user = User.objects.get(username=data['username'])
+        
         developer = Group.objects.get(name='Developer')
         developer.user_set.add(new_user)
         return redirect('/jeremiahchukwuscrumy/success/')
