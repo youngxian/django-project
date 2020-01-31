@@ -15,9 +15,9 @@
         <h3 class="mt-4 pt-4">
             + Add Goal
         </h3>
-        <h2 class="text-danger p-4 text-bold">{{ errror.message }}</h2>
         <form action='' method='POST' class="mt-4">
             {% csrf_token %}
+            <h6 class="text-danger p-3">{{ message }}</h6>
             <div class="form_group">
                 <label>
                     Goal Name

@@ -5,6 +5,7 @@ import random
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django import forms
 
 
 
@@ -52,10 +53,14 @@ def add_goal(request):
     form = CreateGoalForm
     users = User.objects.all()
     allstatus = GoalStatus.objects.all()
+    context = {'create_goal': form,'users': users,'goalstatus': allstatus,'message': ""}
     if request.method == 'POST':
         form = form(request.POST)
         data = request.POST.dict()
-        if data['goal_status'] != '':
+        f = forms.CharField()
+
+        try:
+            f.clean(data['goal_name'])
             random_list = list(random.sample(range(1000, 9999), 10))
             random.shuffle(random_list)
             random_no = random_list[0]
@@ -68,21 +73,24 @@ def add_goal(request):
             moved_by = user.username,
             created_by = user.username,
             owner = user.username,
-            user = user
-            )
+            user = user)
             add_goal.save()
             return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
-        else:
-            error = {
-                'message' : 'Incomplete details'
-            }
-            render(request, 'jeremiahchukwuscrumy/addgoal.html', error)
-    context = {
-        'create_goal': form,
-        'users': users,
-        'goalstatus': allstatus,
-    }
+        except Exception as e:
+            context = {
+                        'create_goal': form,
+                        'users': users,
+                        'goalstatus': allstatus,
+                        'message': "Goal name can't be empty"
+                    }
+            return render(request, 'jeremiahchukwuscrumy/addgoal.html', context)
+    
     return render(request, 'jeremiahchukwuscrumy/addgoal.html', context)
+
+        
+        
+    
+    
 
 
 
