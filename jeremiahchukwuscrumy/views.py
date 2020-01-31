@@ -14,7 +14,7 @@ def home(request):
 
     def get_by_status(status_name):
         goals = GoalStatus.objects.get(status_name=status_name)
-        status_goals = goals.scrumygoals_set.all()
+        status_goals = goals.jeremiahchukwuscrumy.all()
         return status_goals
 
 

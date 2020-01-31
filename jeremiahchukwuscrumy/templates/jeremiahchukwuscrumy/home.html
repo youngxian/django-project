@@ -5,21 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Home</title>
 </head>
 
 <body>
     <style>
-        .table-container {
-            margin-top: 50px;
+        .button {
+            background-color: red;
+            color: black;
+            font-size: 14px;
+            padding: 10px 30px;
         }
     </style>
+    <h5 class="bg-success p-3">
+        Dashboard
+    </h5>
+    <div class="d-flex flex-row align-items-right p-4">
+        <a class="button" href={% url 'jeremiahchukwuscrumy:add' %}>ADD A GOAL</<a>
+    </div>
     <div class="container">
-        <div class="table-container">
-            <a class="btn bg-success text-white" href={% url 'jeremiahchukwuscrumy:add' %}>ADD A GOAL</<a>
-
-            <table class="table">
-                <thead class="thead-dark">
+            <table class="table table-bordered">
+                <thead class="thead-light">
                     <tr>
                         <th scope="col">User</th>
                         <th scope="col">Weekly Goals</th>
@@ -31,16 +38,21 @@
                 {% for user in users %}
                 <tr>
                     <th scope="row">{{user}}</th>
-                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
+                    <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}}{{ goal_id}} {%endif%} {%endfor%}
                     </td>
                     <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%} {%endfor%}
                     </td>
+                    <td>{% for goal in verify_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%}
+                        {%endfor%}
+                    </td>
+                    <td>{% for goal in done_goals%} {%if goal.user.username == user.username%} {{goal}} {%endif%}
+                        {%endfor%}
+                    </td>
 
-                    {% endfor %}
+                    
                 </tr>
-
+{% endfor %}
             </table>
-        </div>
     </div>
 
 </body>
