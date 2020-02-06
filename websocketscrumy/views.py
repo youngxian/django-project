@@ -34,6 +34,7 @@ def disconnect(request):
     connect = Connection.objects.get(connection_id=connection_id)
     return JsonResponse({'message': 'disconnect successfully'}, status=200)
 
+@csrf_exempt
 def send_message(request):
     body = _parse_body(request.body)
     savemessage = ChatMessage(username=body['username'], messages=body['message'], timestamp=body['timestamp'])
