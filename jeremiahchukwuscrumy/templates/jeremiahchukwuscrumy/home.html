@@ -22,12 +22,24 @@
             font-size: 14px;
             margin-right: 20px;
         }
+        
+        .bts {
+            font-size: 10px;
+            margin-top: 20px;
+            color: blue;
+            text-transform: capitalize;
+        }
+        
+        .bts:hover {
+            color: rgb(4, 4, 82);
+            text-decoration: none;
+        }
     </style>
     <div class="d-flex justify-content-between bg-success p-0">
         <h5 class="p-3">
             Dashboard
         </h5>
-        <p class="p-3 usertext text-white">Welcome, {{ user.username}} </p>
+        <p class="p-3 usertext text-white">Welcome, {{ user.username }} </p>
     </div>
     <div class="d-flex flex-row justify-content-between p-4">
         <a href={% url 'jeremiahchukwuscrumy:add' %} class="button bg-warning mt-4"> + ADD GOAL</a>
@@ -45,23 +57,145 @@
                     <th scope="col">Done Goals</th>
                 </tr>
             </thead>
-            {% for user in users %}
-            <tr>
-                <th scope="row">{{user}}</th>
-                <td>{% for goal in weekly_goals%} {%if goal.user.username == user.username%} {{goal}}
-                    <br />{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+             {%if group == 'Admin' %}
+            {% for eachuser in users %}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
                 </td>
-                <td>{% for goal in daily_goals%} {%if goal.user.username == user.username%} {{goal}}
-                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
                 </td>
-                <td>{% for goal in verify_goals%} {%if goal.user.username == user.username%} {{goal}}
-                    <br />{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
                 </td>
-                <td>{% for goal in done_goals%} {%if goal.user.username == user.username%} {{goal}}
-                    <br />{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br> {%endif%} {%endfor%}
                 </td>
             </tr>
             {% endfor %}
+            {%endif%}
+
+            {%if group == 'Developer' %}
+            {% for eachuser in users %}
+            {%if user == eachuser %}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {%endif%}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {% endfor %}
+            {%endif%}
+
+            {%if group == 'Owner' %}
+            {% for eachuser in users %}
+            {%if user == eachuser %}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {%endif%}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {% endfor %}
+            {%endif%}
+
+            {%if group == 'Quality Assurance' %}
+            {% for eachuser in users %}
+            {%if user == eachuser %}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {%elif user != eachuser %}
+            <tr> 
+                <th scope="row">{{ eachuser }}
+                </th>
+                <td>{% for goal in weekly_goals%}{%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}} <br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in daily_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in verify_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br>{%endif%} {%endfor%}
+                </td>
+                <td>{% for goal in done_goals%} {%if goal.user.username == eachuser.username%} {{goal}}
+                    <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br> {%endif%} {%endfor%}
+                </td>
+            </tr>
+            {%endif%}
+            {% endfor %}
+            {%endif%}
+
         </table>
     </div>
 

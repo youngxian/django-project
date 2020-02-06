@@ -19,5 +19,6 @@ from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('jeremiahchukwuscrumy/', include('jeremiahchukwuscrumy.urls'))
+    path('jeremiahchukwuscrumy/', include('jeremiahchukwuscrumy.urls')),
+    path('websocketscrumy/', include('websocketscrumy.urls'))
 ]

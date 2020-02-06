@@ -9,7 +9,7 @@ app_name = 'jeremiahchukwuscrumy'
 urlpatterns = [
     path('', views.index, name='index'),
     path('index/', views.index),
-    path('movegoal/<int:goal_id>/', views.move_goal),
+    path('movegoal/<int:goal_id>/', views.move_goal, name='movegoal'),
     path('addgoal/', views.add_goal, name='add'),
     path('home/', views.home),
     path('logout/', views.logout_view, name='logout'),
