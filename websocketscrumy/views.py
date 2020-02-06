@@ -38,6 +38,7 @@ def disconnect(request):
 def send_message(request):
     body = _parse_body(request.body)
     print("this", body)
+    print("test ", body['username'])
     username = body['username']
     message = body['message']
     timestamp = body['timestamp']
