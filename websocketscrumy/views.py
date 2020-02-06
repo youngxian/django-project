@@ -32,7 +32,4 @@ def disconnect(request):
     #remove from database
     connection_id = body['connectionId']
     connect = Connection.objects.get(connection_id=connection_id)
-    return JsonResponse({'message': 'disconnect successfully'}, status=200
-
-
-
+    return JsonResponse({'message': 'disconnect successfully'}, status=200)
