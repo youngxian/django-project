@@ -52,10 +52,10 @@ def send_message(request):
 
 
 def _send_to_connection(connection_id, data):
-    gatewayapi = boto3.client("apigatewaymanagementapi", endpoint_url="https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections",
-                              region_name="us-east-2",  aws_access_key_id="AKIAJIIZQFWJ7DM4IZGA", aws_secret_access_key="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")
+    gatewayapi = boto3.client('apigatewaymanagementapi', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections', region_name='us-east-2', aws_access_key_id='AKIAJIIZQFWJ7DM4IZGA', aws_secret_access_key='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')
     response = gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
     return response
+
 
 @csrf_exempt
 def getRecentMessages(request):
@@ -65,11 +65,9 @@ def getRecentMessages(request):
     connection_id = body['connectionId']
     
     allmessage = ChatMessage.objects.filter()
-    result_list = list(allmessage.values(
-        'username', 'messages', 'timestamp'))
+    result_list = list(allmessage.values('username', 'messages', 'timestamp'))
     # result_list.reverse()
-    data = {'messages': result_list}
-    
-    _send_to_connection(str(connection_id), data)
+    data = {'messages': [result_list]}
+    _send_to_connection(connection_id, data)
     return JsonResponse({'message': "sent recent messages"}, status=200)
 
