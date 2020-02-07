@@ -61,7 +61,12 @@ def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
     allmessage = ChatMessage.objects.filter()
-    print("test- ", allmessage)
+    result_list = list(allmessage.values(
+        'username', 'message', 'timestamp'))
+    json_result = json.dumps(result_list)
+    
+    print("test- ", json_result)
+    
     data = {'messages': [allmessage]}
     _send_to_connection(connection_id, data)
     return JsonResponse({'message': 'Sent recent messages'}, status=200)
