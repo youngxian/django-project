@@ -27,6 +27,9 @@ def connect(request):
     connect.save()
     return JsonResponse({'message': 'connect successfully'}, status=200)
 
+
+
+@csrf_exempt
 def disconnect(request):
     body = _parse_body(request.body)
     #remove from database
