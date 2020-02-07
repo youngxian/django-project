@@ -31,8 +31,7 @@ def disconnect(request):
     body = _parse_body(request.body)
     #remove from database
     connection_id = body['connectionId']
-    connect = Connection.objects.get(connection_id="HjI9Zcy3CYcCG8A=").delete()
-    connect.save()
+    connect = Connection.objects.filter(connection_id="HjI9Zcy3CYcCG8A=").delete()
     return JsonResponse({'message': 'disconnect successfully'}, status=200)
 
 @csrf_exempt
