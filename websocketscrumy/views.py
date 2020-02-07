@@ -70,9 +70,6 @@ def getRecentMessages(request):
     result_list.reverse()
     
     data = {'messages': result_list}
-    print("print - ", data)
-    for eachdata in result_list:
-        _send_to_connection(connection_id, eachdata)
-        print("print - ", data)
+    print("print - ", json.dumps(data))
     return JsonResponse({'message': data}, status=200)
 
