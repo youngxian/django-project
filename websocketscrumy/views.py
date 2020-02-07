@@ -58,8 +58,9 @@ def _send_to_connection(connection_id, data):
 
 @csrf_exempt
 def getRecentMessages(request):
-    print("test - ", body)
+    print("test - ",request.body)
     body = _parse_body(request.body)
+    print("lieer - ",body)
     connection_id = body['connectionId']
     
     allmessage = ChatMessage.objects.filter()
