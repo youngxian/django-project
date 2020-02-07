@@ -62,7 +62,7 @@ def getRecentMessages(request):
     connection_id = body['connectionId']
     allmessage = ChatMessage.objects.filter()
     result_list = list(allmessage.values(
-        'username', 'message', 'timestamp'))
+        'username', 'messages', 'timestamp'))
     json_result = json.dumps(result_list)
     
     print("test- ", json_result)
