@@ -56,4 +56,13 @@ def _send_to_connection(connection_id, data):
     response = gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
     return response
 
+@csrf_exempt
+def getRecentMessages(request):
+    body = _parse_body(request.body)
+    connection_id = body['connectionId']
+
+    allmessage = ChatMessage.objects.all()
+    data = {'messages': [allmessage]}
+    _send_to_connection(connection_id, data)
+    return JsonResponse({'message': 'Sent recent messages'}, status=200)
 
