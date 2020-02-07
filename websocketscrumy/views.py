@@ -47,6 +47,7 @@ def send_message(request):
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
     connections = Connection.objects.all()
+    print("test -",connections)
     data = {'messages': [body]}
     for eachconnect in connections:
         _send_to_connection(str(eachconnect), data)
