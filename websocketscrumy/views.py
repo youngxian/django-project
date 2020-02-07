@@ -60,7 +60,7 @@ def _send_to_connection(connection_id, data):
 def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
-    allmessage = ChatMessage.objects.all()
+    allmessage = ChatMessage.objects.filter()
     print("test- ", allmessage)
     data = {'messages': [allmessage]}
     _send_to_connection(connection_id, data)
