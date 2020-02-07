@@ -58,7 +58,7 @@ def _send_to_connection(connection_id, data):
 
 @csrf_exempt
 def getRecentMessages(request):
-    body = _parse_body(request.body)
+    body = request.body
     print("test-", body)
     connection_id = body['connectionId']
 
