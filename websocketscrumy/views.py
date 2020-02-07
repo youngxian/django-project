@@ -47,6 +47,7 @@ def send_message(request):
     data = {'messages': [body]}
     for eachconnect in connections:
         _send_to_connection(str(eachconnect), data)
+        print("print - ", data)
     return JsonResponse({'message': 'successfully send'}, status=200)
 
 
@@ -67,7 +68,9 @@ def getRecentMessages(request):
     allmessage = ChatMessage.objects.filter()
     result_list = list(allmessage.values('username', 'messages', 'timestamp'))
     result_list.reverse()
+    
     data = {'messages': [result_list]}
+    print("print - ", data)
     _send_to_connection(connection_id, data)
     return JsonResponse({'message': data}, status=200)
 
