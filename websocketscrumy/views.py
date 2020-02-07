@@ -59,10 +59,9 @@ def _send_to_connection(connection_id, data):
 @csrf_exempt
 def getRecentMessages(request):
     body = _parse_body(request.body)
-    print("test-", body)
     connection_id = body['connectionId']
-
     allmessage = ChatMessage.objects.all()
+    print("test- ", allmessage)
     data = {'messages': [allmessage]}
     _send_to_connection(connection_id, data)
     return JsonResponse({'message': 'Sent recent messages'}, status=200)

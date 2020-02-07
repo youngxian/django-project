@@ -58,6 +58,16 @@
                 </div>
                 <div class="form_group">
                     <label>
+                        Select a Role
+                    </label>
+                <select class="custom-select" name="goal_group">
+                    {% for group in groups %}
+                    <option value="{{ group }}">{{ group }}</option>
+                    {% endfor %}
+                </select>
+                </div>
+                <div class="form_group">
+                    <label>
                         Username
                     </label>
                     <input type="text" name="username" class="form-control">
@@ -68,6 +78,8 @@
                     </label>
                     <input type="password" name="password" class="form-control">
                 </div>
+                
+                 
                 <button class="btn btn-primary mt-4 mb-4" type="submit">Create User</button>
                 <br>
 

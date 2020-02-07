@@ -137,14 +137,13 @@ def add_goal(request):
 
 def index(request):
     form = SignupForm
+    groups = Group.objects.all()
     error ={
                 'Message' : 'Cannot create user',
             }
+    context = {'form': form, 
+               'groups': ["sknba","skankla"]}
     if(request.method == 'POST'):
-    #     form = SignupForm()
-    # #    // try:
-
-    #     form = SignupForm(request.POST)
         data = request.POST.dict()
         user = User.objects.create_user(data['username'], data['email'], data['password'])
         user.last_name = data['last_name']
@@ -159,7 +158,7 @@ def index(request):
     else:
         return render(request, 'registration/index.html', error)
 
-    return render(request, 'registration/index.html', {'form': form})
+    return render(request, 'registration/index.html', context)
 
 
 def logout_view(request):
