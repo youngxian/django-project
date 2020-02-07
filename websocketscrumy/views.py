@@ -64,10 +64,7 @@ def getRecentMessages(request):
     result_list = list(allmessage.values(
         'username', 'messages', 'timestamp'))
     json_result = json.dumps(result_list)
-    
-    print("test- ", json_result)
-    
-    data = {'messages': [allmessage]}
+    data = {'messages': json_result}
     _send_to_connection(connection_id, data)
     return JsonResponse({'message': 'Sent recent messages'}, status=200)
 
