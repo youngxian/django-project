@@ -46,10 +46,11 @@ def send_message(request):
     timestamp = body['body']['timestamp']
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
-    connections = Connection.objects.all()
+    connections = Connection.objects.filter()
+    allconnect = list(connections.values('connection_id'))
     print("test -",connections)
     data = {'messages': [body]}
-    for eachconnect in connections:
+    for eachconnect in allconnect:
         _send_to_connection(str(eachconnect), data)
     return JsonResponse({'message': 'successfully send'}, status=200)
 
