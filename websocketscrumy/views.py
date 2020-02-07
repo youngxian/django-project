@@ -71,6 +71,8 @@ def getRecentMessages(request):
     
     data = {'messages': [result_list]}
     print("print - ", data)
-    _send_to_connection(connection_id, data)
+    for eachdata in data:
+        _send_to_connection(connection_id, eachdata)
+        print("print - ", data)
     return JsonResponse({'message': data}, status=200)
 
