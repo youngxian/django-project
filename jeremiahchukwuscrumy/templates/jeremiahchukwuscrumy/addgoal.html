@@ -29,9 +29,23 @@
                     Select User
                 </label>
                 <select class="custom-select" name="user">
-                    {% for user in users %}
-                    <option value="{{ user }}">{{ user }}</option>
-                    {% endfor %}
+                    
+                    {%if group == 'Developer' %}
+                        <option value="{{ currentuser }}">{{ currentuser }}</option>
+                    {%endif%}
+                    {%if group == 'Admin' %}
+                        {% for user in users %}
+                        <option value="{{ user }}">{{ user }}</option>
+                        {% endfor %}
+                    {%endif%}
+                    {%if group == 'Owner' %}
+                        {% for user in users %}
+                        <option value="{{ user }}">{{ user }}</option>
+                        {% endfor %}
+                    {%endif%}
+                    {%if group == 'Quality Assurance' %}
+                        <option value="{{ currentuser }}">{{ currentuser }}</option>
+                    {%endif%}
                 </select>
             </div>
             <div class="form_group">

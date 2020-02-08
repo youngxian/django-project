@@ -93,8 +93,11 @@ def move_goal(request, goal_id):
 def add_goal(request):
     form = CreateGoalForm
     users = User.objects.all()
+    currentuser = User.objects.get(username=request.user)
     allstatus = GoalStatus.objects.all()
-    context = {'create_goal': form,'users': users,'goalstatus': allstatus,'message': ""}
+    group = Group.objects.filter(user=request.user)[0].name
+    context = {'create_goal': form, 'users': users,
+               'goalstatus': allstatus, 'message': "", "group": group, "currentuser":currentuser}
     if request.method == 'POST':
         form = form(request.POST)
         data = request.POST.dict()
@@ -122,7 +125,9 @@ def add_goal(request):
                         'create_goal': form,
                         'users': users,
                         'goalstatus': allstatus,
-                        'message': "Goal name can't be empty"
+                        'message': "Goal name can't be empty",
+                        "group": group,
+                        "currentuser": currentuser
                     }
             return render(request, 'jeremiahchukwuscrumy/addgoal.html', context)
     
