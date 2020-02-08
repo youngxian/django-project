@@ -62,7 +62,7 @@ def send_message(request):
     return JsonResponse({'message': 'successfully send'}, status=200)
 
 
-
+@csrf_exempt
 def _send_to_connection(connection_id, data):
     # auth = AWSRequestsAuth(aws_access_key='AKIAYKJFHT2IEJHLAVU5',
     #                        aws_secret_access_key='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',
