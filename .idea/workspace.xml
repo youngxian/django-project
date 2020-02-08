@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ecdb45b7-fb1b-4208-b8a4-a84470c05172" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/websocketscrumy/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/websocketscrumy/views.py" afterDir="false" />
-    </list>
+    <list default="true" id="ecdb45b7-fb1b-4208-b8a4-a84470c05172" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +14,7 @@
         <entry file="file://$PROJECT_DIR$/websocketscrumy/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="290">
-              <caret line="80" column="21" lean-forward="true" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+              <caret line="78" column="107" lean-forward="true" selection-start-line="78" selection-start-column="107" selection-end-line="78" selection-end-column="107" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -349,7 +347,7 @@
     <entry file="file://$PROJECT_DIR$/websocketscrumy/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
-          <caret line="80" column="21" lean-forward="true" selection-start-line="80" selection-start-column="21" selection-end-line="80" selection-end-column="21" />
+          <caret line="78" column="107" lean-forward="true" selection-start-line="78" selection-start-column="107" selection-end-line="78" selection-end-column="107" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>

@@ -7,7 +7,7 @@ import boto3
 from django.conf import settings
 import requests
 from aws_requests_auth.aws_auth import AWSRequestsAuth
-
+from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 # Create your views here.
 
 boto3.set_stream_logger('')
@@ -65,18 +65,17 @@ def send_message(request):
 
 
 def _send_to_connection(connection_id, data):
-    
-#     auth = AWSRequestsAuth(aws_access_key='AKIAYKJFHT2IEJHLAVU5',
-#                            aws_secret_access_key='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',
-#                            aws_host='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
-#                            aws_region='us-east-1',
-#                            aws_service='apigatewaymanagementapi')
-#     response = requests.post('https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
-#                             auth=auth)
-#     print("test-", response.content)
-    gatewayapi = boto3.client('apigatewaymanagementapi', region_name='us-east-2', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
-                              aws_access_key_id='AKIAYKJFHT2IEJHLAVU5', aws_secret_access_key='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')
-    return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
+    auth = BotoAWSRequestsAuth(aws_access_key='AKIAYKJFHT2IEJHLAVU5',
+                           aws_secret_access_key='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',
+                           aws_host='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
+                           aws_region='us-east-2',
+                           aws_service='apigatewaymanagementapi')
+    response = requests.post('https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections', json=json.dumps(data),
+                            auth=auth)
+    print("test-", response.content)
+    # gatewayapi = boto3.client('apigatewaymanagementapi', region_name='us-east-2', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
+    #                           aws_access_key_id='AKIAYKJFHT2IEJHLAVU5', aws_secret_access_key='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')
+    # return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
 
 @csrf_exempt
