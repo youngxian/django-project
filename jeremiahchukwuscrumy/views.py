@@ -55,7 +55,7 @@ def move_goal(request, goal_id):
     dailygoal = GoalStatus.objects.get(status_name = "Daily Goal")
     verifygoal = GoalStatus.objects.get(status_name = "Verify Goal")
     donegoal = GoalStatus.objects.get(status_name = "Done Goal")
-    user = User.objects.get(username = obj.created_by)
+    user = User.objects.get(username=request.user)
     
         # group = user.groups.all()[0].name
     group = Group.objects.filter(user = request.user)[0].name
