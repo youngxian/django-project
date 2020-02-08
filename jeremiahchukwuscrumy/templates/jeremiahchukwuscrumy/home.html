@@ -137,7 +137,7 @@
                     <br>{{goal.goal_id}}<br><a href={% url 'jeremiahchukwuscrumy:movegoal' goal_id=goal.goal_id %} class="bts">movegoal</a><br><br> {%endif%} {%endfor%}
                 </td>
             </tr>
-            {%endif%}
+            {%else%}
             <tr> 
                 <th scope="row">{{ eachuser }}
                 </th>
@@ -154,6 +154,7 @@
                     <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
                 </td>
             </tr>
+            {%endif%}
             {% endfor %}
             {%endif%}
 
