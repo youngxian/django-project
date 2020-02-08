@@ -41,9 +41,9 @@ def disconnect(request):
 def send_message(request):
     body = _parse_body(request.body)
     newbody = dict(body)
-    username = new['body']['username']
-    message = new['body']['message']
-    timestamp = new['body']['timestamp']
+    username = newbody['body']['username']
+    message = newbody['body']['message']
+    timestamp = newbody['body']['timestamp']
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
     connections = Connection.objects.filter()
