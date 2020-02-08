@@ -51,7 +51,6 @@ def send_message(request):
     savemessage.save()
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
-    print("test -", allconnect)
     message = {
         "message": message,
         "username": username,
@@ -60,7 +59,6 @@ def send_message(request):
     data = {'messages': [list(message)]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
-        print("each -", str(conn))
         _send_to_connection(str(conn), data)
     return JsonResponse({'message': 'successfully send'}, status=200)
 
@@ -76,7 +74,8 @@ def _send_to_connection(connection_id, data):
 #     response = requests.post('https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
 #                             auth=auth)
 #     print("test-", response.content)
-    gatewayapi = boto3.client('apigatewaymanagementapi', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections', aws_access_key_id='AKIAYKJFHT2IEJHLAVU5', aws_secret_access_key='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')
+    gatewayapi = boto3.client('apigatewaymanagementapi', region_name='us-east-1', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
+                              aws_access_key_id='AKIAYKJFHT2IEJHLAVU5', aws_secret_access_key='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')
     return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
 
