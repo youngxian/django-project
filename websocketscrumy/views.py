@@ -55,7 +55,7 @@ def send_message(request):
     }
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
-    data = {'messages': [list(messages)]}
+    data = {'messages': [messages]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
         _send_to_connection(str(conn), data)
