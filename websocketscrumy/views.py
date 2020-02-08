@@ -50,7 +50,7 @@ def send_message(request):
     savemessage.save()
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
-    data = {'messages': [list(allconnect)]}
+    data = {'messages': [list(newbody)]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
         _send_to_connection(str(conn), data)
@@ -70,7 +70,7 @@ def getRecentMessages(request):
     connection_id = body['connectionId']
     allmessage = ChatMessage.objects.filter()
     result_list = list(allmessage.values('username', 'messages', 'timestamp'))
-    data = {'messages': result_list}
-    # print("print - ", json.dumps(data))
+    data = {'messages': [result_list]}
+    _send_to_connection(str(connection_id), data)
     return JsonResponse({'message': json.dumps(data)}, status=200)
 
