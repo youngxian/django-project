@@ -65,7 +65,7 @@ def send_message(request):
 
 
 def _send_to_connection(connection_id, data):
-    auth = BotoAWSRequestsAuth(aws_access_key='AKIAYKJFHT2IEJHLAVU5',
+    auth = AWSRequestsAuth(aws_access_key='AKIAYKJFHT2IEJHLAVU5',
                            aws_secret_access_key='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',
                            aws_host='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
                            aws_region='us-east-2',
