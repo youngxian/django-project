@@ -40,10 +40,10 @@ def disconnect(request):
 @csrf_exempt
 def send_message(request):
     body = _parse_body(request.body)
-    body = dict(body)
-    username = body['body']['username']
-    message = body['body']['message']
-    timestamp = body['body']['timestamp']
+    newbody = dict(body)
+    username = new['body']['username']
+    message = new['body']['message']
+    timestamp = new['body']['timestamp']
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
     connections = Connection.objects.filter()
