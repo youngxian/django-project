@@ -52,8 +52,8 @@ def send_message(request):
     data = {'messages': [body]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
-        print("each -", conn)
-        _send_to_connection(conn, data)
+        print("each -", str(conn))
+        _send_to_connection(str(conn), data)
     return JsonResponse({'message': 'successfully send'}, status=200)
 
 
