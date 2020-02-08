@@ -4,6 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 from .models import Connection, ChatMessage
 import boto3
+from django.conf import settings
 
 # Create your views here.
 
@@ -64,8 +65,7 @@ def send_message(request):
 
 
 def _send_to_connection(connection_id, data):
-    gatewayapi = boto3.session('apigatewaymanagementapi', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
-                              region_name='us-east-2', aws_access_key_id='AKIAYKJFHT2IEJHLAVU5', aws_secret_access_key='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')
+    gatewayapi = boto3.client('apigatewaymanagementapi', endpoint_url='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections', region_name='us-east-2', aws_access_key_id=settings.AWS_ACCESS_KEY_ID, aws_secret_access_key=settings.AWS_SECRET_ACCESS_KEY)
     return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
     # return response
 
