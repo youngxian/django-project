@@ -54,7 +54,7 @@ def send_message(request):
         "username": username,
         "timestamp": timestamp
     }
-    data = {'messages': [json.load(message)]}
+    data = {'messages': [list(message)]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
         print("each -", str(conn))
