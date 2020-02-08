@@ -49,7 +49,12 @@ def send_message(request):
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
     print("test -", allconnect)
-    data = {'messages': [body]}
+    message = {
+        "message": message,
+        "username": username,
+        "timestamp": timestamp
+    }
+    data = {'messages': [message]}
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
         print("each -", str(conn))
