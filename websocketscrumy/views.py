@@ -77,7 +77,7 @@ def _send_to_connection(connection_id, data):
                               aws_access_key_id=os.getenv('ACCESS_KEY_ID'), aws_secret_access_key=os.getenv('SECRET_KEY'), aws_session_token=os.getenv('SESSION_TOKEN'))
     
     # Data = json.dumps(data).encode('utf-8')
-    return gatewayapi.post_to_connection(ConnectionId=connection_id, Data={"key":"messafw"})
+    return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=[{"key":"messafw"}])
 
 
 @csrf_exempt
