@@ -7,7 +7,7 @@ import boto3
 
 # Create your views here.
 
-
+boto3.set_stream_logger('')
 
 @csrf_exempt
 def test(request):
