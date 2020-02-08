@@ -97,7 +97,7 @@
                     <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
                 </td>
             </tr>
-            {%endif%}
+            {%else%}
             <tr> 
                 <th scope="row">{{ eachuser }}
                 </th>
@@ -114,6 +114,7 @@
                     <br>{{goal.goal_id}}<br><br> {%endif%} {%endfor%}
                 </td>
             </tr>
+            {%endif%}
             {% endfor %}
             {%endif%}
 
