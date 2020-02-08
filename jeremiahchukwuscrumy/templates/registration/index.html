@@ -56,7 +56,7 @@
                     </label>
                     <input type="email" pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" name="email" class="form-control">
                 </div>
-                <div class="form_group">
+                {% comment %} <div class="form_group">
                     <label>
                         Select a Role
                     </label>
@@ -65,7 +65,7 @@
                     <option value="{{ group }}">{{ group }}</option>
                     {% endfor %}
                 </select>
-                </div>
+                </div> {% endcomment %}
                 <div class="form_group">
                     <label>
                         Username
