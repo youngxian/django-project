@@ -69,7 +69,7 @@ def _send_to_connection(connection_id, data):
                            aws_secret_access_key='kBINd3g74U7mbRe3yDHsrdWmojl/0uvQ2ncmDxfF',
                            aws_host='https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections',
                            aws_region='us-east-2',
-                           aws_service='apigatewaymanagementapi')
+                           aws_service='execute-api')
     response = requests.post('https://0l90clyplf.execute-api.us-east-2.amazonaws.com/test/@connections', json=json.dumps(data),
                             auth=auth)
     print("test-", response.content)
