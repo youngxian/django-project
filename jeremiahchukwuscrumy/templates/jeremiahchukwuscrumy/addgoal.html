@@ -53,9 +53,18 @@
                     Select Goal Status
                 </label>
                 <select class="custom-select" name="goal_status">
-                    {% for statuss in goalstatus %}
-                    <option value="{{ statuss }}">{{ statuss }}</option>
-                    {% endfor %}
+                    {%if group == 'Developer' %}
+                        <option value="{{ weeklygoal }}">{{ weeklygoal }}</option>
+                    {%endif%}
+                    {%if group == 'Admin' %}
+                        <option value="{{ weeklygoal }}">{{ weeklygoal }}</option>
+                    {%endif%}
+                    {%if group == 'Owner' %}
+                        <option value="{{ weeklygoal }}">{{ weeklygoal }}</option>
+                    {%endif%}
+                    {%if group == 'Quality Assurance' %}
+                        <option value="{{ weeklygoal }}">{{ weeklygoal }}</option>
+                    {%endif%}
                 </select>
             </div>
             <input class="btn mt-4 bg-warning" type="submit">

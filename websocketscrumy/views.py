@@ -7,8 +7,6 @@ import boto3
 from django.conf import settings
 import requests
 import os
-from aws_requests_auth.aws_auth import AWSRequestsAuth
-from aws_requests_auth.boto_utils import BotoAWSRequestsAuth
 # Create your views here.
 
 boto3.set_stream_logger('')

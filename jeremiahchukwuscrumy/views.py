@@ -96,8 +96,9 @@ def add_goal(request):
     currentuser = User.objects.get(username=request.user)
     allstatus = GoalStatus.objects.all()
     group = Group.objects.filter(user=request.user)[0].name
+    weeklygoal = GoalStatus.objects.get(status_name="Weekly Goal")
     context = {'create_goal': form, 'users': users,
-               'goalstatus': allstatus, 'message': "", "group": group, "currentuser":currentuser}
+               'goalstatus': allstatus, 'message': "", "group": group, "currentuser": currentuser, "weeklygoal": weeklygoal}
     if request.method == 'POST':
         form = form(request.POST)
         data = request.POST.dict()
