@@ -126,6 +126,3 @@ STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = '/jeremiahchukwuscrumy/home'
 
-AWS_ACCESS_KEY_ID = 'AKIAYKJFHT2IEJHLAVU5'
-
-AWS_SECRET_ACCESS_KEY = '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'
