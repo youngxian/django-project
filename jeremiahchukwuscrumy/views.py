@@ -45,19 +45,18 @@ def home(request):
 def move_goal(request, goal_id):
     
     form = MoveGoalForm
-    error = {'error':'A record with that goal id does not exist'}
+    error = {'error': 'A record with that goal id does not exist'}
+    allstatus = GoalStatus.objects.all()
+    obj = ScrumyGoals.objects.get(goal_id=goal_id)
+    status = GoalStatus.objects.get(status_name=obj.goal_status)
+    weeklygoal = GoalStatus.objects.get(status_name="Weekly Goal")
+    dailygoal = GoalStatus.objects.get(status_name="Daily Goal")
+    verifygoal = GoalStatus.objects.get(status_name="Verify Goal")
+    donegoal = GoalStatus.objects.get(status_name="Done Goal")
+    user = User.objects.get(username=request.user)
 
     try:
         
-        allstatus = GoalStatus.objects.all()
-        obj = ScrumyGoals.objects.get(goal_id=goal_id)
-        status = GoalStatus.objects.get(status_name = obj.goal_status)
-        weeklygoal = GoalStatus.objects.get(status_name = "Weekly Goal")
-        dailygoal = GoalStatus.objects.get(status_name = "Daily Goal")
-        verifygoal = GoalStatus.objects.get(status_name = "Verify Goal")
-        donegoal = GoalStatus.objects.get(status_name = "Done Goal")
-        user = User.objects.get(username=request.user)
-    
         # group = user.groups.all()[0].name
         group = Group.objects.filter(user = request.user)[0].name
         goals = {
