@@ -48,18 +48,19 @@ def move_goal(request, goal_id):
     error = {'error':'A record with that goal id does not exist'}
 
     try:
-    allstatus = GoalStatus.objects.all()
-    obj = ScrumyGoals.objects.get(goal_id=goal_id)
-    status = GoalStatus.objects.get(status_name = obj.goal_status)
-    weeklygoal = GoalStatus.objects.get(status_name = "Weekly Goal")
-    dailygoal = GoalStatus.objects.get(status_name = "Daily Goal")
-    verifygoal = GoalStatus.objects.get(status_name = "Verify Goal")
-    donegoal = GoalStatus.objects.get(status_name = "Done Goal")
-    user = User.objects.get(username=request.user)
+        
+        allstatus = GoalStatus.objects.all()
+        obj = ScrumyGoals.objects.get(goal_id=goal_id)
+        status = GoalStatus.objects.get(status_name = obj.goal_status)
+        weeklygoal = GoalStatus.objects.get(status_name = "Weekly Goal")
+        dailygoal = GoalStatus.objects.get(status_name = "Daily Goal")
+        verifygoal = GoalStatus.objects.get(status_name = "Verify Goal")
+        donegoal = GoalStatus.objects.get(status_name = "Done Goal")
+        user = User.objects.get(username=request.user)
     
         # group = user.groups.all()[0].name
-    group = Group.objects.filter(user = request.user)[0].name
-    goals = {
+        group = Group.objects.filter(user = request.user)[0].name
+        goals = {
             'goalss': obj,
             'goal_status': status,
             'goal_name': obj.goal_name,
@@ -72,15 +73,15 @@ def move_goal(request, goal_id):
             'donegoal': donegoal
 
             }
-    if request.method == 'POST':
-        form = form(request.POST)
-        data = request.POST.dict()
+        if request.method == 'POST':
+            form = form(request.POST)
+            data = request.POST.dict()
         
-        obj = ScrumyGoals.objects.get(goal_id=goal_id)
-        status = GoalStatus.objects.get(status_name = data['goal_status'])
-        obj.goal_status = status
-        obj.save()
-        return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
+            obj = ScrumyGoals.objects.get(goal_id=goal_id)
+            status = GoalStatus.objects.get(status_name = data['goal_status'])
+            obj.goal_status = status
+            obj.save()
+            return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
 
     except Exception as e:
         return render(request, 'jeremiahchukwuscrumy/exception.html', error)
