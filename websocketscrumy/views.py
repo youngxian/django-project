@@ -39,6 +39,7 @@ def disconnect(request):
     connect = Connection.objects.filter(connection_id=connection_id).delete()
     return JsonResponse({'message': 'disconnect successfully'}, status=200)
 
+
 @csrf_exempt
 def send_message(request):
     body = _parse_body(request.body)
@@ -69,7 +70,6 @@ def _send_to_connection(connection_id, data):
     return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
 
-@csrf_exempt
 def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
@@ -78,4 +78,3 @@ def getRecentMessages(request):
     data = {'messages': result_list}
     _send_to_connection(str(connection_id), data)
     return JsonResponse({'message': json.dumps(data)}, status=200)
-
