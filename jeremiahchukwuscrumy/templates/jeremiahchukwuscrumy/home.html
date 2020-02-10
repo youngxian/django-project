@@ -39,7 +39,10 @@
         <h5 class="p-3">
             Dashboard
         </h5>
-        <p class="p-3 usertext text-white">Welcome, {{ user.username }} ,</p><p>User Role = {{ group}}</p>
+        <div>
+        <p class="p-3 usertext text-white">Welcome, {{ user.username }}</p>
+        <p class="p-3 usertext text-white">User Role = {{ group}}</p>
+        </div>
     </div>
     <div class="d-flex flex-row justify-content-between p-4">
         <a href={% url 'jeremiahchukwuscrumy:add' %} class="button bg-warning mt-4"> + ADD GOAL</a>
