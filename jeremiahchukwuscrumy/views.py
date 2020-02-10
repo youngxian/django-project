@@ -54,6 +54,18 @@ def move_goal(request, goal_id):
     verifygoal = GoalStatus.objects.get(status_name="Verify Goal")
     donegoal = GoalStatus.objects.get(status_name="Done Goal")
     user = User.objects.get(username=request.user)
+    goals = {
+        'goalss': obj,
+        'goal_status': status,
+        'goal_name': obj.goal_name,
+        'user': user,
+        'group': group,
+        'allstatus': list(allstatus),
+        'weeklygoal': weeklygoal,
+        'dailygoal': dailygoal,
+        'verifygoal': verifygoal,
+        'donegoal': donegoal
+    }
 
     try:
         
