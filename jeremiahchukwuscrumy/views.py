@@ -54,24 +54,10 @@ def move_goal(request, goal_id):
     verifygoal = GoalStatus.objects.get(status_name="Verify Goal")
     donegoal = GoalStatus.objects.get(status_name="Done Goal")
     user = User.objects.get(username=request.user)
+    
+    # group = user.groups.all()[0].name
+    group = Group.objects.filter(user = request.user)[0].name
     goals = {
-        'goalss': obj,
-        'goal_status': status,
-        'goal_name': obj.goal_name,
-        'user': user,
-        'group': group,
-        'allstatus': list(allstatus),
-        'weeklygoal': weeklygoal,
-        'dailygoal': dailygoal,
-        'verifygoal': verifygoal,
-        'donegoal': donegoal
-    }
-
-    try:
-        
-        # group = user.groups.all()[0].name
-        group = Group.objects.filter(user = request.user)[0].name
-        goals = {
             'goalss': obj,
             'goal_status': status,
             'goal_name': obj.goal_name,
@@ -82,8 +68,9 @@ def move_goal(request, goal_id):
             'dailygoal': dailygoal,
             'verifygoal': verifygoal,
             'donegoal': donegoal
-
             }
+
+    try:
         if request.method == 'POST':
             form = form(request.POST)
             data = request.POST.dict()
@@ -93,10 +80,10 @@ def move_goal(request, goal_id):
             obj.goal_status = status
             obj.save()
             return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
-
+        
     except Exception as e:
         return render(request, 'jeremiahchukwuscrumy/exception.html', error)
-    else:
+    # else:
         # return HttpResponse(obj.goal_name)
     return render(request, 'jeremiahchukwuscrumy/movegoal.html', goals)
 
