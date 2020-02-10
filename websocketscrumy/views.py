@@ -70,6 +70,7 @@ def _send_to_connection(connection_id, data):
     return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
 
+@csrf_exempt
 def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
@@ -77,4 +78,4 @@ def getRecentMessages(request):
     result_list = list(allmessage.values('username', 'messages', 'timestamp'))
     data = {'messages': result_list}
     _send_to_connection(str(connection_id), data)
-    return JsonResponse({'message': json.dumps(data)}, status=200)
+    return JsonResponse({'message': 'Recent messages sent', status=200)
