@@ -47,7 +47,7 @@ def move_goal(request, goal_id):
     form = MoveGoalForm
     error = {'error':'A record with that goal id does not exist'}
 
-    # try:
+    try:
     allstatus = GoalStatus.objects.all()
     obj = ScrumyGoals.objects.get(goal_id=goal_id)
     status = GoalStatus.objects.get(status_name = obj.goal_status)
@@ -82,9 +82,9 @@ def move_goal(request, goal_id):
         obj.save()
         return HttpResponseRedirect('/jeremiahchukwuscrumy/home')
 
-    # except Exception as e:
-    #     return render(request, 'jeremiahchukwuscrumy/exception.html', error)
-    # else:
+    except Exception as e:
+        return render(request, 'jeremiahchukwuscrumy/exception.html', error)
+    else:
         # return HttpResponse(obj.goal_name)
     return render(request, 'jeremiahchukwuscrumy/movegoal.html', goals)
 
