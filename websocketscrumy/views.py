@@ -45,7 +45,7 @@ def send_message(request):
     body = _parse_body(request.body)
     newbody = dict(body)
     username = newbody['body']['username']
-    message = newbody['body']['content']
+    message = newbody['body']['message']
     timestamp = newbody['body']['timestamp']
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
