@@ -51,7 +51,7 @@ def send_message(request):
     savemessage.save()
     messages = {
         "username":username,
-        "message":message,
+        "content":message,
         "timestamp":timestamp
     }
     connections = Connection.objects.filter()
