@@ -45,7 +45,7 @@ def send_message(request):
     body = _parse_body(request.body)
     newbody = dict(body)
     username = newbody['body']['username']
-    message = newbody['body']['message']
+    message = newbody['body']['content']
     timestamp = newbody['body']['timestamp']
     savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
     savemessage.save()
@@ -68,7 +68,7 @@ def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
     allmessage = ChatMessage.objects.filter()
-    result_list = list(allmessage.values('username', 'messages', 'timestamp'))
+    result_list = list(allmessage.values('username', 'content', 'timestamp'))
     result_list.reverse()
     data = {'messages': result_list}
     _send_to_connection(str(connection_id), data)

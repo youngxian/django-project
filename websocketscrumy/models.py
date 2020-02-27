@@ -13,8 +13,8 @@ class Connection(models.Model):
 
 class ChatMessage(models.Model):
     username = models.CharField(max_length=50)
-    messages = models.CharField(max_length=400)
+    content = models.CharField(max_length=400)
     timestamp = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.messages
+        return self.content
