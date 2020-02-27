@@ -44,11 +44,13 @@ def disconnect(request):
 def send_message(request):
     body = _parse_body(request.body)
     newbody = dict(body)
+    print("newbody", newbody)
     username = newbody['body']['username']
     message = newbody['body']['message']
     timestamp = newbody['body']['timestamp']
-    savemessage = ChatMessage(username=username, messages=message, timestamp=timestamp)
-    savemessage.save()
+    savemessage = ChatMessage(username=username, content=message, timestamp=timestamp)
+    tt = savemessage.save()
+    print("save message", tt)
     messages = {
         "username":username,
         "content":message,
