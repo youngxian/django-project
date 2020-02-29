@@ -69,7 +69,7 @@ def send_message(request):
 def isTyping(request):
     body = _parse_body(request.body)
     newbody = dict(body)
-    
+    print("message bidy", newbody)
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
     data = {'message': [newbody]}
