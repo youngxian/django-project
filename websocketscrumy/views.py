@@ -72,7 +72,7 @@ def isTyping(request):
     
     connections = Connection.objects.filter()
     allconnect = list(connections.values('connection_id'))
-    data = {'whoistyping': [newbody]}
+    data = {'message': [newbody]}
     
     for eachconnect in allconnect:
         conn = eachconnect['connection_id']
