@@ -66,6 +66,26 @@ def send_message(request):
 
 
 @csrf_exempt
+def isTyping(request):
+    body = _parse_body(request.body)
+    newbody = dict(body)
+    
+    connections = Connection.objects.filter()
+    allconnect = list(connections.values('connection_id'))
+    data = {'whoistyping': [newbody]}
+    
+    for eachconnect in allconnect:
+        conn = eachconnect['connection_id']
+        _send_to_connection(str(conn), data)
+    return JsonResponse({'message': 'successfully send'}, status=200)
+    
+    
+
+    
+    
+
+
+@csrf_exempt
 def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
