@@ -25,8 +25,7 @@ SECRET_KEY = 'avr1oe6_=r*&lu6_f9-vjyuz45etp10t4kb6!&w$cnt!o-5-_r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['18.222.179.244', '127.0.0.1',
-                 'ip-172-31-8-123.us-east-2.compute.internal', ]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

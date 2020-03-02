@@ -9,7 +9,6 @@ import requests
 import os
 # Create your views here.
 
-boto3.set_stream_logger('')
 
 @csrf_exempt
 def test(request):
@@ -28,7 +27,6 @@ def connect(request):
     connect = Connection(connection_id=connection_id)
     connect.save()
     return JsonResponse({'message': 'connect successfully'}, status=200)
-
 
 
 @csrf_exempt
@@ -66,26 +64,6 @@ def send_message(request):
 
 
 @csrf_exempt
-def isTyping(request):
-    body = _parse_body(request.body)
-    newbody = dict(body)
-    print("message bidy", newbody)
-    connections = Connection.objects.filter()
-    allconnect = list(connections.values('connection_id'))
-    data = {'message': [newbody]}
-    
-    for eachconnect in allconnect:
-        conn = eachconnect['connection_id']
-        _send_to_connection(str(conn), data)
-    return JsonResponse({'message': 'successfully send'}, status=200)
-    
-    
-
-    
-    
-
-
-@csrf_exempt
 def getRecentMessages(request):
     body = _parse_body(request.body)
     connection_id = body['connectionId']
@@ -95,9 +73,6 @@ def getRecentMessages(request):
     data = {'messages': result_list}
     _send_to_connection(str(connection_id), data)
     return JsonResponse({'message': 'Recent messages sent'}, status=200)
-
-
-
 
 
 @csrf_exempt
