@@ -61,7 +61,7 @@ def send_message(request):
         conn = eachconnect['connection_id']
         try:
             _send_to_connection(str(conn), data)
-        except expression as e:
+        except Exception as e:
             delcon = Connection.objects.filter(connection_id=conn).delete()
     return JsonResponse({'message': 'successfully send'}, status=200)
 
